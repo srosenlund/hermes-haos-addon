@@ -1,0 +1,21 @@
+skyvern-bitwarden-cli/config.yaml
+  s_a06759e34a4eae::t_b7117be248428b 11
+skyvern-server/config.yaml
+  s_a06759e34a4eae::t_c3fbfe0bb0f385 12
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "e54c100b181ef309bbdef9c1c356c169b180e945",
+  "prompts": {},
+  "sessions": {
+    "s_a06759e34a4eae": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b025d300-b368-48c9-a75a-46293b57609f",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Stefan Rosenlund <mail@stefanrosenlund.dk>"
+    }
+  }
+}
