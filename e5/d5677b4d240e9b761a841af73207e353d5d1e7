@@ -1,0 +1,25 @@
+skyvern-server/config.yaml
+  s_a06759e34a4eae::t_353dedaef8cf9e 1-26
+skyvern-server/DOCS.md
+  s_a06759e34a4eae::t_4d4622e4b1f02f 1-119
+skyvern-server/Dockerfile
+  s_a06759e34a4eae::t_3649170bc3a464 1-27
+skyvern-server/run.sh
+  s_a06759e34a4eae::t_2bfb65f55a7d90 1-69
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "e5d5677b4d240e9b761a841af73207e353d5d1e7",
+  "prompts": {},
+  "sessions": {
+    "s_a06759e34a4eae": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b025d300-b368-48c9-a75a-46293b57609f",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Stefan Rosenlund <mail@stefanrosenlund.dk>"
+    }
+  }
+}
