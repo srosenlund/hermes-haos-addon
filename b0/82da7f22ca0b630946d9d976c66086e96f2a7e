@@ -1,0 +1,27 @@
+hermes-agent/DOCS.md
+  s_ca97a8dc73c334::t_4b772b8f07a3c0 1-6
+hermes-agent/Dockerfile
+  s_ca97a8dc73c334::t_b9bba2b30bfec1 1-4
+hermes-agent/config.yaml
+  s_ca97a8dc73c334::t_95fcac2fb63d53 1-28
+hermes-agent/run-addon.sh
+  s_ca97a8dc73c334::t_2689527cb91ed0 1-28
+repository.yaml
+  s_ca97a8dc73c334::t_e1e60b8a0ae6be 1-3
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "b082da7f22ca0b630946d9d976c66086e96f2a7e",
+  "prompts": {},
+  "sessions": {
+    "s_ca97a8dc73c334": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "73fb7db7-8180-4988-a89c-5eacbed49d83",
+        "model": "claude-fable-5"
+      },
+      "human_author": "Stefan Rosenlund <mail@stefanrosenlund.dk>"
+    }
+  }
+}
