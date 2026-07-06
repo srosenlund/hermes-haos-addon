@@ -6,8 +6,10 @@
 
 Options map 1:1 to the vault login/unlock flow:
 
-- `bw_host`: vault server URL (default `https://vault.bitwarden.com`; point at
-  a self-hosted Vaultwarden URL if that's what Task 3's credentials are for)
+- `bw_host`: vault server URL. **Only `https://vault.bitwarden.com` (Stefan's
+  real Bitwarden cloud account) is supported.** Do not point this at a
+  self-hosted Vaultwarden instance or any other server — that is not a
+  supported configuration for this add-on.
 - `bw_clientid` / `bw_clientsecret`: Bitwarden API key credentials
 - `bw_master_password`: master password used for `bw unlock`
 
@@ -67,3 +69,43 @@ in the *base image's own* `base-addon-log-level` oneshot service, which
 needs to reach the real `supervisor` hostname; this is expected and applies
 to any `hassio-addons/base`-derived add-on tested this way, not something
 introduced by this fix.
+
+## Non-root `bw` process (fixed 2026-07-06, review round 2)
+
+Upstream's own `bitwarden-cli-server/Dockerfile` never runs the process that
+handles the master password and session token (`bw unlock` / `bw serve`) as
+root — it creates a dedicated `bw` user (`addgroup`/`adduser`, uid 1001) and
+switches to it via `USER bw`. That got lost when this add-on was rewired onto
+`ghcr.io/hassio-addons/base` (whose `/init` — the s6-overlay bootstrap — must
+stay root; a Dockerfile-level `USER` directive would apply to the whole
+container's PID 1, not just our service).
+
+Fixed by creating the same `bw` user in the Dockerfile, then dropping
+privileges *inside* the s6-overlay legacy service itself
+(`/etc/services.d/skyvern-bitwarden-cli/run`, i.e. `run.sh`) via
+`s6-setuidgid bw` right before the final `exec` into `entrypoint.sh` — the
+standard s6-overlay mechanism for running one specific legacy service as a
+non-root user while the container itself boots as root. (`/etc/fix-attrs.d/`,
+the other pattern named in the task, is a legacy s6-overlay v2 mechanism for
+fixing directory ownership at boot; it doesn't exist on this s6-overlay v3
+base image and doesn't itself change which user a service runs as, so it
+doesn't apply here.) `s6-setuidgid` does not reset `$HOME`, so `run.sh` also
+exports `HOME=/home/bw` before the `exec`, matching the home directory
+`adduser -S` creates by default and that the Dockerfile chowns to `bw:bw`.
+
+Verified locally via `docker build` + manual `s6-setuidgid bw ...` probes
+inside the built image (full boot still requires the real Supervisor, same
+boundary as above):
+
+- `bw --version` runs successfully as the `bw` user (uid 1001, not 0).
+- The `bw` user can write to `$HOME/.config/Bitwarden CLI/` (where
+  `@bitwarden/cli` stores its config/session data) after the `HOME` export.
+- `/app/bitwarden-cli-server/entrypoint.sh` is owned by and executable by
+  `bw` (chowned in the Dockerfile).
+- npm's global install tree (`/usr/local/lib/node_modules`,
+  `/usr/local/bin/bw`) needed no extra chown — verified world-readable/
+  executable (0755) by default on this base image.
+- A full `docker run` of the fixed image fails at the exact same point as
+  before this change (the base image's own `base-addon-log-level` service,
+  unable to reach the real `supervisor` host) — confirming no new failure
+  mode was introduced upstream of our service.
