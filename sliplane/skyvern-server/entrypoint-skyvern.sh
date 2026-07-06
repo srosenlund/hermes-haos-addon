@@ -71,6 +71,14 @@ if [ ! -f "$SKYVERN_CREDENTIALS_FILE" ]; then
     api_token=$(echo "$org_output" | awk '/token=/{gsub(/.*token='\''|'\''.*/, ""); print}')
     echo -e "[skyvern]\nconfigs = [\n    {\"env\" = \"local\", \"host\" = \"http://skyvern:8000/api/v1\", \"orgs\" = [{name=\"Skyvern\", cred=\"$api_token\"}]}\n]" > "$SKYVERN_CREDENTIALS_FILE"
     echo "$SKYVERN_CREDENTIALS_FILE file updated with organization details."
+    # Patch (sliplane variant only, not upstream): upstream never logs the
+    # generated API token anywhere visible -- it's only captured into the
+    # $org_output/$api_token shell variables and written to a file inside
+    # the container's (ephemeral, per-deploy) filesystem. On Sliplane there
+    # is no shell/exec access into the running container to read that file
+    # back out, so echo the token to stdout once here -- it's the only way
+    # to retrieve it via `sliplane_client.get_logs()`.
+    echo "SKYVERN_API_TOKEN=$api_token"
 fi
 
 _kill_xvfb_on_term() {
