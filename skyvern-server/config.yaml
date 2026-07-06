@@ -1,0 +1,26 @@
+name: "Skyvern Server"
+version: "1.0.0"
+slug: "skyvern_server"
+description: "Vision-LLM browser automation (Skyvern) for Hermes"
+url: "https://github.com/srosenlund/hermes-haos-addon"
+arch:
+  - aarch64
+  - amd64
+host_network: true
+init: false
+boot: auto
+watchdog: "http://127.0.0.1:8000/api/v1/heartbeat"
+options:
+  database_string: ""
+  llm_provider: "anthropic"
+  llm_api_key: ""
+  enable_bitwarden: false
+  bitwarden_server: "http://127.0.0.1"
+  bitwarden_server_port: "8087"
+schema:
+  database_string: "password"
+  llm_provider: "list(anthropic|openai)"
+  llm_api_key: "password"
+  enable_bitwarden: "bool"
+  bitwarden_server: "str"
+  bitwarden_server_port: "str"
