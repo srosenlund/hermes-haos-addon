@@ -1,0 +1,24 @@
+skyvern-bitwarden-cli/DOCS.md
+  s_a06759e34a4eae::t_d7aef76c48b065 72-111
+  s_a06759e34a4eae::t_a1c17cd9d656eb 9-12
+skyvern-bitwarden-cli/Dockerfile
+  s_a06759e34a4eae::t_974b0c7f621ec8 33-53,57-63,74-90
+skyvern-bitwarden-cli/run.sh
+  s_a06759e34a4eae::t_98dbd51d1385c8 6-18
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "ff9e1f724907398979f57eac151edf6c9a8bb3f6",
+  "prompts": {},
+  "sessions": {
+    "s_a06759e34a4eae": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b025d300-b368-48c9-a75a-46293b57609f",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Stefan Rosenlund <mail@stefanrosenlund.dk>"
+    }
+  }
+}
