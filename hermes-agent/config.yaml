@@ -1,0 +1,28 @@
+name: Hermes Agent
+version: "1.0.0"
+slug: hermes_agent
+description: Nous Research Hermes agent — Telegram-bot + Home Assistant gateway (DeepSeek)
+url: https://github.com/srosenlund/hermes-haos-addon
+arch:
+  - aarch64
+init: false
+startup: application
+boot: auto
+options:
+  deepseek_api_key: ""
+  hass_url: "http://homeassistant:8123"
+  hass_token: ""
+  hermes_model: "deepseek/deepseek-v4-flash"
+  hermes_timezone: "Europe/Copenhagen"
+  telegram_bot_token: ""
+  telegram_allowed_users: "5594979301"
+  telegram_home_channel: "5594979301"
+schema:
+  deepseek_api_key: password
+  hass_url: url
+  hass_token: password
+  hermes_model: str
+  hermes_timezone: str
+  telegram_bot_token: password
+  telegram_allowed_users: str
+  telegram_home_channel: str
