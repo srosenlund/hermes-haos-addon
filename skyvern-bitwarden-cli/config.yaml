@@ -1,0 +1,21 @@
+name: "Skyvern Bitwarden CLI"
+version: "1.0.0"
+slug: "skyvern_bitwarden_cli"
+description: "bw serve REST wrapper for Skyvern's credential lookups"
+arch:
+  - aarch64
+  - amd64
+host_network: true
+init: false
+boot: auto
+watchdog: "http://127.0.0.1:8002/status"
+options:
+  bw_host: "https://vault.bitwarden.com"
+  bw_clientid: ""
+  bw_clientsecret: ""
+  bw_master_password: ""
+schema:
+  bw_host: "str"
+  bw_clientid: "password"
+  bw_clientsecret: "password"
+  bw_master_password: "password"
