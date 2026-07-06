@@ -9,7 +9,7 @@ arch:
 host_network: true
 init: false
 boot: auto
-watchdog: "http://127.0.0.1:8000/api/v1/heartbeat"
+watchdog: "http://[HOST]:8000/api/v1/heartbeat"
 options:
   database_string: ""
   llm_provider: "anthropic"

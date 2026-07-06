@@ -8,7 +8,7 @@ arch:
 host_network: true
 init: false
 boot: auto
-watchdog: "http://127.0.0.1:8087/status"
+watchdog: "http://[HOST]:8087/status"
 options:
   bw_host: "https://vault.bitwarden.com"
   bw_clientid: ""
