@@ -1,0 +1,27 @@
+skyvern-bitwarden-cli/entrypoint.sh
+  s_a06759e34a4eae::t_30be378f12b273 1-187
+skyvern-bitwarden-cli/run.sh
+  s_a06759e34a4eae::t_251066031427fe 1-6
+skyvern-bitwarden-cli/Dockerfile
+  s_a06759e34a4eae::t_b13ae46093a014 1-31
+skyvern-bitwarden-cli/config.yaml
+  s_a06759e34a4eae::t_94bc31542eb7bc 1-21
+skyvern-bitwarden-cli/DOCS.md
+  s_a06759e34a4eae::t_56ea29eafa86fb 1-51
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "9a216aecf47baa604c827ff32e6ec26843802e63",
+  "prompts": {},
+  "sessions": {
+    "s_a06759e34a4eae": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b025d300-b368-48c9-a75a-46293b57609f",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Stefan Rosenlund <mail@stefanrosenlund.dk>"
+    }
+  }
+}
