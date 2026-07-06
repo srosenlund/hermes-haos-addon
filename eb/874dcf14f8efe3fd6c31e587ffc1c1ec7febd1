@@ -1,0 +1,19 @@
+sliplane/skyvern-server/Dockerfile
+  s_a06759e34a4eae::t_b774d6cd1169ca 33-37
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "eb874dcf14f8efe3fd6c31e587ffc1c1ec7febd1",
+  "prompts": {},
+  "sessions": {
+    "s_a06759e34a4eae": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b025d300-b368-48c9-a75a-46293b57609f",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Stefan Rosenlund <mail@stefanrosenlund.dk>"
+    }
+  }
+}
