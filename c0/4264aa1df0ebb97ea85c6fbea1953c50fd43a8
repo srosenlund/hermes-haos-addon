@@ -1,0 +1,21 @@
+skyvern-server/Dockerfile
+  s_a06759e34a4eae::t_2291ad3e535ac6 21-46,49-52
+skyvern-server/entrypoint-skyvern.sh
+  s_a06759e34a4eae::t_21490dd2ac273a 1-117
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "c04264aa1df0ebb97ea85c6fbea1953c50fd43a8",
+  "prompts": {},
+  "sessions": {
+    "s_a06759e34a4eae": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b025d300-b368-48c9-a75a-46293b57609f",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Stefan Rosenlund <mail@stefanrosenlund.dk>"
+    }
+  }
+}
