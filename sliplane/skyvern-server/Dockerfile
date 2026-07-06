@@ -30,6 +30,11 @@ FROM gogost/gost:3 AS gostbin
 
 FROM public.ecr.aws/skyvern/skyvern:latest
 
+# curl is used by cdp-tunnel-entrypoint.sh's readiness-check loop -- not
+# present by default in upstream's python:3.11-slim-bookworm base.
+RUN apt-get update && apt-get install -y --no-install-recommends curl && \
+    rm -rf /var/lib/apt/lists/*
+
 COPY --from=ts /usr/local/bin/tailscaled /usr/local/bin/tailscaled
 COPY --from=ts /usr/local/bin/tailscale  /usr/local/bin/tailscale
 COPY --from=gostbin /bin/gost            /usr/local/bin/gost
