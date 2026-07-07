@@ -2,6 +2,26 @@
 
 set -e
 
+# Diagnostic (sliplane variant only, not upstream): print the actually
+# resolved LLM settings at boot, since the entrypoint's env-var-driven
+# config has repeatedly not matched observed runtime behavior (generate_task
+# keeps calling Anthropic regardless of LLM_KEY/SECONDARY_LLM_KEY/ENABLE_*
+# changes). Reading it directly from skyvern.config.settings is the only
+# way to confirm what Python actually sees, since there's no shell/exec
+# access into a running Sliplane container.
+python -c "
+from skyvern.config import settings
+print('DIAG LLM_KEY=' + repr(settings.LLM_KEY))
+print('DIAG SECONDARY_LLM_KEY=' + repr(settings.SECONDARY_LLM_KEY))
+print('DIAG ENABLE_ANTHROPIC=' + repr(settings.ENABLE_ANTHROPIC))
+print('DIAG ENABLE_OPENAI=' + repr(settings.ENABLE_OPENAI))
+print('DIAG ENABLE_OPENROUTER=' + repr(settings.ENABLE_OPENROUTER))
+print('DIAG OPENROUTER_MODEL=' + repr(settings.OPENROUTER_MODEL))
+print('DIAG ANTHROPIC_CUA_LLM_KEY=' + repr(settings.ANTHROPIC_CUA_LLM_KEY))
+from skyvern.forge.sdk.api.llm.config_registry import LLMConfigRegistry
+print('DIAG registered_models=' + repr(LLMConfigRegistry.get_model_names()))
+" 2>&1 || echo "DIAG script failed to run"
+
 # ---------------------------------------------------------------------------
 # Ensure the target database exists (POSTGRES_DB is only honoured on first
 # volume init — a stale postgres-data dir means the DB may be missing).
