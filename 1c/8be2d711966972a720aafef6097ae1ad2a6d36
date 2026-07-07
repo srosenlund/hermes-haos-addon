@@ -1,0 +1,19 @@
+sliplane/skyvern-server/entrypoint-skyvern.sh
+  s_a06759e34a4eae::t_6ff5a9f6a54adb 5-24
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "1c8be2d711966972a720aafef6097ae1ad2a6d36",
+  "prompts": {},
+  "sessions": {
+    "s_a06759e34a4eae": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "b025d300-b368-48c9-a75a-46293b57609f",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Stefan Rosenlund <mail@stefanrosenlund.dk>"
+    }
+  }
+}
