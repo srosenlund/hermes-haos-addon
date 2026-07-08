@@ -1,0 +1,21 @@
+sliplane/skyvern-chrome/Dockerfile
+  s_e08e6527df3c14::t_babf5e163dea9b 1-40
+sliplane/skyvern-chrome/custom-services.d/cdp-forward
+  s_e08e6527df3c14::t_ea811dc2cdf2fd 1-15
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.6.10",
+  "base_commit_sha": "2d1dc0eab5b67917b9645e729b4e27948a2fe940",
+  "prompts": {},
+  "sessions": {
+    "s_e08e6527df3c14": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "8de631f7-a334-46de-b173-3f200db3a490",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Stefan Rosenlund <mail@stefanrosenlund.dk>"
+    }
+  }
+}
