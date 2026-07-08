@@ -1,0 +1,15 @@
+#!/usr/bin/with-contenv bash
+# Forwards 0.0.0.0:19222 -> 127.0.0.1:9222 (Chrome's actual CDP port, which
+# stays loopback-only regardless of --remote-debugging-address -- see
+# Dockerfile comment). Skyvern's BROWSER_REMOTE_DEBUGGING_URL should point
+# at :19222, not :9222.
+set -euo pipefail
+
+echo "cdp-forward: waiting for Chrome's CDP endpoint on 127.0.0.1:9222..."
+for i in $(seq 1 60); do
+    curl -s --max-time 2 -o /dev/null http://127.0.0.1:9222/json/version && break
+    sleep 1
+done
+
+echo "cdp-forward: starting socat 0.0.0.0:19222 -> 127.0.0.1:9222"
+exec socat TCP-LISTEN:19222,fork,reuseaddr TCP:127.0.0.1:9222
